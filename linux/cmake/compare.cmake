@@ -1,0 +1,8 @@
+execute_process(COMMAND ${STONE} 3000 ${OUT} RESULT_VARIABLE rc)
+if(NOT rc EQUAL 0)
+  message(FATAL_ERROR "stone exited with ${rc}")
+endif()
+file(MD5 ${OUT} got)
+if(NOT got STREQUAL ${REF_MD5})
+  message(FATAL_ERROR "${OUT}: md5 ${got}, expected ${REF_MD5}")
+endif()

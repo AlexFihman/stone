@@ -1,0 +1,8 @@
+execute_process(COMMAND ${STONE} 400 ${OUT} RESULT_VARIABLE rc)
+if(NOT rc EQUAL 0)
+  message(FATAL_ERROR "stone exited with ${rc}")
+endif()
+execute_process(COMMAND ${NAIVE} ${OUT} 400 200 RESULT_VARIABLE rc)
+if(NOT rc EQUAL 0)
+  message(FATAL_ERROR "table does not match the game rules")
+endif()
